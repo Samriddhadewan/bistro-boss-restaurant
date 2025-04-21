@@ -1,0 +1,8 @@
+.check-it-out{
+    background: linear-gradient(0deg, rgba(21, 21, 21, 0.70) 0%, rgba(21, 21, 21, 0.70) 100%), url("../../assets/home/featured.jpg") lightgray 50% / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
