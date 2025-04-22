@@ -32,13 +32,13 @@ const Menu = () => {
       <SectionTitle heading={"TODAY'S OFFER"} subHeading={"---Don't miss---"}></SectionTitle>
       <MenuCategory categories={offers}></MenuCategory>
       {/* desert section here  */}
-      <MenuCategory categories={deserts} bgImage={desertBgImg} title={'DESSERTS'} des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></MenuCategory>
+      <MenuCategory categories={deserts} bgImage={desertBgImg} title={'deserts'} des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></MenuCategory>
       {/* pizza section  */}
-      <MenuCategory categories={pizzas} bgImage={pizzaBgImg} title="PIZZA" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></MenuCategory>
+      <MenuCategory categories={pizzas} bgImage={pizzaBgImg} title="pizzas" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></MenuCategory>
       {/* salads category  */}
-      <MenuCategory categories={salads} bgImage={saladBgImg} title="SALADS" des={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}></MenuCategory>
+      <MenuCategory categories={salads} bgImage={saladBgImg} title="salads" des={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}></MenuCategory>
       {/* soup category  */}
-      <MenuCategory categories={soups} bgImage={soupBgImg} title="SOUPS" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." ></MenuCategory>
+      <MenuCategory categories={soups} bgImage={soupBgImg} title="soups" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." ></MenuCategory>
 
 
     </div>
