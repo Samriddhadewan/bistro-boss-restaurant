@@ -14,7 +14,7 @@ const FoodCard = ({item}) => {
     <h2 className="text-2xl font-semibold">{name}</h2>
     <p>{recipe}</p>
     <div className="card-actions justify-center">
-      <button className="btn text-[#BB8506] border-0 border-b-4 rounded-lg px-9 py-5 border-[#BB8506] bg-[#E8E8E8]">Buy Now</button>
+      <button className="btn text-[#BB8506] border-0 border-b-4 rounded-lg px-9 py-5 border-[#BB8506] bg-[#E8E8E8]">Add to Cart</button>
     </div>
   </div>
 </div>

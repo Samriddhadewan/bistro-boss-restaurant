@@ -8,6 +8,7 @@ import ItemCards from "../../Components/ItemCards/ItemCards";
 import FoodCard from "../../Components/FoodCard/FoodCard";
 import OrderTab from "../../Components/OrderTab/OrderTab";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Order = () => {
   const categories = ["salads", "pizzas", "soups", "deserts", "drinks"];
@@ -24,6 +25,9 @@ const Order = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Order</title>
+      </Helmet>
       <Cover
         img={orderImage}
         title="OUR MENU"
