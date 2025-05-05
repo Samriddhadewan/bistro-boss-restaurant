@@ -2,13 +2,13 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 
 const Login = () => {
   const location = useLocation();
@@ -18,6 +18,8 @@ const Login = () => {
   console.log(signInUser);
   const inputRef = useRef(null);
   const [disable, setDisable] = useState(true);
+
+
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -98,8 +100,12 @@ const Login = () => {
                 </button>
               </fieldset>
             </form>
+            <GoogleLogin></GoogleLogin>
             <p>
-              Dont have an account? <Link to="/signUp">SignUp Now</Link>
+              Dont have an account?{" "}
+              <Link className="underline text-blue-600" to="/signUp">
+                SignUp Now
+              </Link>
             </p>
           </div>
         </div>

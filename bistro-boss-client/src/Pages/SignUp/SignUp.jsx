@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Components/Hooks/useAxiosPublic";
+import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { createUser, updateUser } = useContext(AuthContext);
   // console.log(createUser)
@@ -21,14 +24,21 @@ const SignUp = () => {
       const user = result.user;
       console.log(user);
       updateUser(data.name, data.photoURL).then(() => {
-        console.log("User Profile Updated");
-        reset();
-        Swal.fire({
-          title: "User Created Successful",
-          icon: "success",
-          draggable: true,
+        const userData = {
+          name: data.name,
+          email: data.email,
+        };
+        axiosPublic.post("/users", userData).then((res) => {
+          if (res.data.insertedId) {
+            reset();
+            Swal.fire({
+              title: "User Created Successful",
+              icon: "success",
+              draggable: true,
+            });
+            navigate("/");
+          }
         });
-        navigate("/")
       });
     });
     // console.log(data)
@@ -131,6 +141,7 @@ const SignUp = () => {
                 Register
               </button>
             </form>
+            <GoogleLogin></GoogleLogin>
 
             <p className="text-center pb-4">
               Already have an account?{" "}

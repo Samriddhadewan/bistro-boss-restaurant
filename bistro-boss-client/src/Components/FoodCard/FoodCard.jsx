@@ -3,13 +3,17 @@ import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useCart from "../Hooks/useCart";
 
 const FoodCard = ({ item }) => {
+  const [,refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const { name, recipe, image, price, _id } = item || {};
   const { user } = useAuth();
-  const handleAddToCart = (food) => {
+  const handleAddToCart = () => {
     if (user && user?.email) {
       const cartItem = {
         menuId: _id,
@@ -18,18 +22,18 @@ const FoodCard = ({ item }) => {
         image,
         price,
       };
-      axios.post("http://localhost:5000/carts", cartItem)
-      .then(res=>{
-        if(res.data.insertedId){
+      axiosSecure.post("/carts", cartItem).then((res) => {
+        if (res.data.insertedId) {
           Swal.fire({
             position: "top-end",
             icon: "success",
             title: `${name} added to your cart`,
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
+          refetch();
         }
-      })
+      });
     } else {
       Swal.fire({
         title: "You are not Logged in",
@@ -57,7 +61,7 @@ const FoodCard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions justify-center">
           <button
-            onClick={() => handleAddToCart(item)}
+            onClick={handleAddToCart}
             className="btn text-[#BB8506] border-0 border-b-4 rounded-lg px-9 py-5 border-[#BB8506] bg-[#E8E8E8]"
           >
             Add to Cart
