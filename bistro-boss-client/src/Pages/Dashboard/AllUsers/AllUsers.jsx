@@ -9,11 +9,7 @@ const AllUsers = () => {
   const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users", {
-        headers: {
-            Authorization: `bearer ${localStorage.getItem("access-token")}`
-        }
-      });
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
@@ -68,7 +64,6 @@ const AllUsers = () => {
     });
   };
 
-  console.log(users);
   return (
     <div className="p-8">
       <div className="flex justify-evenly ">

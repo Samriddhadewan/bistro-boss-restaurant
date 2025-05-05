@@ -9,18 +9,15 @@ const GoogleLogin = () => {
   const { loginWithGoogle } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const handleGoogleLogin = () => {
-    loginWithGoogle()
-    .then((res) => {
+    loginWithGoogle().then((res) => {
       const userData = {
         email: res.user.email,
         name: res.user.displayName,
-      }
-      axiosPublic.post("/users", userData)
-      .then(res=>{
+      };
+      axiosPublic.post("/users", userData).then((res) => {
         console.log(res.data);
-        navigate("/")
-        
-      })
+        navigate("/");
+      });
     });
   };
 
