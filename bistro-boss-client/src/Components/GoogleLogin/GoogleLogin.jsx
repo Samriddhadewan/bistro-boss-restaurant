@@ -16,8 +16,8 @@ const GoogleLogin = () => {
       };
       axiosPublic.post("/users", userData).then((res) => {
         console.log(res.data);
-        navigate("/");
       });
+      navigate("/");
     });
   };
 

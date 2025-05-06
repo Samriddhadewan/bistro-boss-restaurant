@@ -10,10 +10,12 @@ const AllUsers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
+      console.log("in the all users")
       return res.data;
     },
   });
 
+  console.log(users)
   const handleMakeAdmin = (user) => {
     Swal.fire({
       title: "Are you sure you want to make this user admin?",
