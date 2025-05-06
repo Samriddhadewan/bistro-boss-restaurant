@@ -3,15 +3,19 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
 import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../Components/Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Components/Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItems = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -23,7 +27,25 @@ const AddItems = () => {
             'content-type': "multipart/form-data"
         }   
     })
-    console.log(res.data)
+    if(res.data.success){
+        const menuItem = {
+            name: data.name,
+            category: data.category,
+            price: parseFloat(data.price),
+            recipe: data.recipe,
+            image: res.data.data.display_url
+        }
+        const menuRes = await axiosSecure.post("/menu", menuItem);
+        console.log(menuRes.data)
+        if(menuRes.data.insertedId){
+            reset();
+            Swal.fire({
+                title: "Product added successfully!",
+                icon: "success",
+                draggable: true
+              });
+        }
+    }
   };
   return (
     <div>

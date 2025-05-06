@@ -31,12 +31,12 @@ const SignUp = () => {
         axiosPublic.post("/users", userData).then((res) => {
           if (res.data.insertedId) {
             reset();
+            navigate("/");
             Swal.fire({
               title: "User Created Successful",
               icon: "success",
               draggable: true,
             });
-            navigate("/");
           }
         });
       });
