@@ -4,6 +4,7 @@ import useMenu from "../../../Components/Hooks/useMenu/useMenu";
 import { FaPen, FaTrash, FaUikit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Components/Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu,loading,refetch] = useMenu();
@@ -73,10 +74,14 @@ const ManageItems = () => {
                   </td>
                   <td>{item?.name}</td>
                   <td>{item?.price}</td>
+                  
+
                   <td>
+                    <Link to={`/dashboard/update/${item._id}`}> 
                     <button className="btn btn-ghost btn-lg">
                       <FaPen className="text-orange-400"></FaPen>
                     </button>
+                    </Link>
                   </td>
                   <th>
                     <button

@@ -4,6 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAxiosSecure from "../../../Components/Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const axiosSecure = useAxiosSecure();
@@ -42,7 +43,14 @@ const Cart = () => {
       <div className="flex justify-between mt-5">
         <h1 className="text-2xl">Total items {cart.length}</h1>
         <h1 className="text-2xl">Total Price {totalPrice}</h1>
-        <button className="btn btn-primary">pay</button>
+        {
+          cart.length ? <>        <Link to="/dashboard/payment">
+          <button className="btn btn-primary">pay</button>
+          </Link></> : <>
+          <button disabled={true} className="btn btn-primary">pay</button>
+          </>
+        }
+      
       </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
