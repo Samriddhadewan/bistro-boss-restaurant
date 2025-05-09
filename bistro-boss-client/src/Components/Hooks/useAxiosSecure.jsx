@@ -24,11 +24,11 @@ const useAxiosSecure = () => {
     }, function(error){
       const status = error.response.status;
       if(status === 401 || status === 403){
-        navigate("/login");
         signOutUser()
         .then(res=> {
         })
       }
+      navigate("/login");
       console.log("error code in the interceptor", status)
       return Promise.reject(error)
     })

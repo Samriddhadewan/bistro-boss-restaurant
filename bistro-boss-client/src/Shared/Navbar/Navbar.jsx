@@ -4,10 +4,11 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { IoCartOutline } from "react-icons/io5";
 import useCart from "../../Components/Hooks/useCart";
+import useAdmin from "../../Components/Hooks/useAdmin";
 
 const Navbar = () => {
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
-  console.log(cart)
   const { user, signOutUser } = useContext(AuthContext);
   console.log(user);
   const handleLogOut = () => {
@@ -29,17 +30,28 @@ const Navbar = () => {
       <li>
         <Link to="/menu">Menu</Link>
       </li>
-    <li>
+      <li>
         <Link to="/order/salads">Order</Link>
       </li>
-      <li>
-        <Link to="/secret">Secret</Link>
-      </li>
+      {user?.displayName && isAdmin && (
+        <>
+          <li>
+            <Link to="/dashboard/adminHome">Dashboard</Link>
+          </li>
+        </>
+      )}
+      {
+        user?.displayName && !isAdmin && <>
+        <li>
+          <Link to="/dashboard/userHome">DashBoard</Link>
+        </li>
+        </>
+      }
       <li>
         <Link to="/dashboard/cart">
           <button className="btn">
-          <IoCartOutline />
-          <div className="badge badge-sm badge-secondary">+{cart.length}</div>
+            <IoCartOutline />
+            <div className="badge badge-sm badge-secondary">+{cart.length}</div>
           </button>
         </Link>
       </li>
